@@ -8,7 +8,8 @@ espresso-core = "3.5.1"
 lifecycle-runtime-ktx = "2.6.2"
 activity-compose = "1.8.2"
 compose-bom = "2023.10.01"
-hilt = "2.48"
+hilt = "2.48.1"
+ktor = "2.3.7"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -27,19 +28,30 @@ ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview
 ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 material3 = { group = "androidx.compose.material3", name = "material3" }
-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle-runtime-ktx"}
-# hilt
-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt"}
-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt"}
+lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle-runtime-ktx" }
+
+# Hilt
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+
+# Ktor
+ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
+ktor-client-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor" }
+ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor-client-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor" }
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }
 org-jetbrains-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "org-jetbrains-kotlin-android" }
+org-jetbrains-kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "org-jetbrains-kotlin-android" }
 
 # Hilt
-com-google-dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt"}
-
+com-google-dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 
 [bundles]
+compose-ui = ["ui", "ui-graphics", "ui-tooling", "ui-tooling-preview", "ui-test-manifest"]
+ktor = ["ktor-client-core", "ktor-client-cio", "ktor-client-content-negotiation", "ktor-serialization-kotlinx-json", "ktor-client-logging"]
+
 

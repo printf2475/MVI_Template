@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.com.android.application)
     alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.org.jetbrains.kotlin.kapt)
+    alias(libs.plugins.org.jetbrains.kotlin.plugin.serialization)
     alias(libs.plugins.com.google.dagger.hilt.android)
 }
 
@@ -21,6 +22,8 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        // 템플릿 사용시 local.properties에서 가져다 쓰도록 변경해야 합니다.(테스트용...)
+        buildConfigField("String", "COIN_BASE_URL", "\"https://jsonplaceholder.typicode.com/\"")
     }
 
     buildTypes {
@@ -40,6 +43,7 @@ android {
         jvmTarget = "17"
     }
     buildFeatures {
+        buildConfig = true
         compose = true
     }
     composeOptions {
@@ -56,20 +60,17 @@ android {
 }
 
 dependencies {
-
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
 
     // Compose
+    implementation(libs.bundles.compose.ui)
+
     implementation(libs.activity.compose)
-    implementation(platform(libs.compose.bom))
-    implementation(libs.ui)
-    implementation(libs.ui.graphics)
-    implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
     implementation(libs.lifecycle.runtime.compose)
-    debugImplementation(libs.ui.tooling)
-    debugImplementation(libs.ui.test.manifest)
+
+    implementation(platform(libs.compose.bom))
     androidTestImplementation(platform(libs.compose.bom))
 
     //Test
@@ -78,9 +79,11 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.ui.test.junit4)
 
-
     //Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+
+    //Ktor
+    implementation(libs.bundles.ktor)
 
 }
