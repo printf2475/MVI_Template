@@ -1,2 +1,2 @@
 # MVI_Template
-Compose + MVI + Clean Architecture + Retrofit2
+Compose + MVI + Clean Architecture + Ktor
