@@ -23,7 +23,7 @@ android {
             useSupportLibrary = true
         }
         // 템플릿 사용시 local.properties에서 가져다 쓰도록 변경해야 합니다.(테스트용...)
-        buildConfigField("String", "COIN_BASE_URL", "\"https://jsonplaceholder.typicode.com/\"")
+        buildConfigField("String", "BASE_URL", "\"https://jsonplaceholder.typicode.com/\"")
     }
 
     buildTypes {

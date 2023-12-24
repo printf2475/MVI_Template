@@ -37,7 +37,7 @@ object NetworkModule {
             })
         }
         defaultRequest {
-            url(BuildConfig.COIN_BASE_URL)
+            url(BuildConfig.BASE_URL)
         }
     }
 }
