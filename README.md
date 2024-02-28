@@ -1,5 +1,5 @@
 # MVI_Template
-Compose + MVI + Clean Architecture + Retrofit2
+Compose + MVI + Clean Architecture + Ktor
 
 - 현재 사용중인 컨벤션 및 구조 입니다
 - 추후 새로운 앱을 개발할 때 빠르게 개발하기 위한 템플릿 입니다.
