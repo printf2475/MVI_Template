@@ -10,7 +10,7 @@ interface TemplateApi {
     suspend fun getTemplateAlbums() : List<TemplateAlbum>
 }
 
-class TemplateApiImpl(
+class DefaultTemplateApi(
     private val client: HttpClient
 ): TemplateApi{
     override suspend fun getTemplateAlbums(): List<TemplateAlbum> {

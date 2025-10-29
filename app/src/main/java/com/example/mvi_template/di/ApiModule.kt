@@ -1,7 +1,7 @@
 package com.example.mvi_template.di
 
 import com.example.mvi_template.data.api.TemplateApi
-import com.example.mvi_template.data.api.TemplateApiImpl
+import com.example.mvi_template.data.api.DefaultTemplateApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,7 +16,7 @@ object ApiModule {
     @Singleton
     fun provideTemplateApi(
         client: HttpClient
-    ): TemplateApi = TemplateApiImpl(
+    ): TemplateApi = DefaultTemplateApi(
         client = client
     )
 }

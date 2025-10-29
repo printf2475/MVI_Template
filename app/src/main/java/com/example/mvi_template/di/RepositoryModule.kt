@@ -1,7 +1,7 @@
 package com.example.mvi_template.di
 
 import com.example.mvi_template.data.api.TemplateApi
-import com.example.mvi_template.data.repository.RepositoryImpl
+import com.example.mvi_template.data.repository.DefaultRepository
 import com.example.mvi_template.data.repository.remote.RemoteDataSourceImpl
 import com.example.mvi_template.domain.repository.Repository
 import com.example.mvi_template.data.repository.remote.RemoteDataSource
@@ -26,7 +26,7 @@ object RepositoryModule {
     @Singleton
     fun provideRepository(
         remoteDataSource: RemoteDataSource
-    ): Repository = RepositoryImpl(
+    ): Repository = DefaultRepository(
         remoteDataSource = remoteDataSource
     )
 }

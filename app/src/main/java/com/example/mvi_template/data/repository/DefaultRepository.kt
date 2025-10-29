@@ -5,7 +5,7 @@ import com.example.mvi_template.domain.model.TemplateAlbum
 import com.example.mvi_template.domain.repository.Repository
 import com.example.mvi_template.data.repository.remote.RemoteDataSource
 
-class RepositoryImpl(
+class DefaultRepository(
     private val remoteDataSource: RemoteDataSource
 ) : Repository {
     override suspend fun getTemplateAlbums(): List<TemplateAlbum> =
