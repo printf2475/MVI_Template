@@ -1,34 +1,20 @@
 package com.example.mvi_template.domain.usecase
 
-import android.util.Log
 import com.example.mvi_template.domain.model.TemplateAlbum
 import com.example.mvi_template.domain.repository.Repository
-import com.example.mvi_template.domain.util.UseCaseResult
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import jakarta.inject.Inject
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
-interface GetTemplateAlbumsUseCase {
-    suspend operator fun invoke(
-        coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO,
-    ): UseCaseResult<List<TemplateAlbum>>
-}
-
-class GetTemplateAlbumsUseCaseImpl(
+class GetTemplateAlbumsUseCase @Inject constructor(
     private val repository: Repository
-): GetTemplateAlbumsUseCase {
-    companion object {
-        private const val TAG : String = "GetTemplateAlbumsUseCaseImpl"
+) {
+    operator fun invoke(): Flow<List<TemplateAlbum>> = flow {
+        println("TAG: $TAG / invoke")
+        emit(repository.getTemplateAlbums())
     }
-    override suspend fun invoke(coroutineDispatcher: CoroutineDispatcher): UseCaseResult<List<TemplateAlbum>> {
-        Log.d(TAG, "invoke")
-        return kotlin.runCatching {
-            withContext(coroutineDispatcher){
-                val result = repository.getTemplateAlbums()
-                UseCaseResult.Success(result)
-            }
-        }.getOrElse {
-            UseCaseResult.Error(it)
-        }
+
+    companion object {
+        private const val TAG: String = "GetTemplateAlbumsUseCaseImpl"
     }
 }
