@@ -1,4 +1,4 @@
-package com.example.mvi_template.di
+package com.example.mvi_template.data.di
 
 import com.example.mvi_template.data.api.TemplateApi
 import com.example.mvi_template.data.api.DefaultTemplateApi
