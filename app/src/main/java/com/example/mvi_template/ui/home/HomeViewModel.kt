@@ -5,11 +5,14 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mvi_template.domain.usecase.GetTemplateAlbumsUseCase
-import com.example.mvi_template.domain.util.UseCaseResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.runningFold
 import kotlinx.coroutines.flow.stateIn
@@ -47,18 +50,20 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getTemplate() = viewModelScope.launch {
-        _uiEvent.send(HomeContract.UiEvent.SetIsLoading(true))
-        when (val result = getTemplateAlbumsUseCase()) {
-            is UseCaseResult.Success -> {
-                _uiEvent.send(HomeContract.UiEvent.LoadedTemplate(result.data))
+        getTemplateAlbumsUseCase()
+            .onStart {
+                _uiEvent.send(HomeContract.UiEvent.SetIsLoading(true))
             }
-
-            is UseCaseResult.Error -> {
-                _sideEffect.send(HomeContract.SideEffect.TemplateLoadFail(result.exception.message ?: ""))
-                Log.d(TAG, "Error : ${result.exception.message}\n ${result.exception.cause}")
+            .onCompletion {
+                _uiEvent.send(HomeContract.UiEvent.SetIsLoading(false))
             }
-        }
-        _uiEvent.send(HomeContract.UiEvent.SetIsLoading(false))
+            .catch {
+                _sideEffect.send(HomeContract.SideEffect.TemplateLoadFail(it.message ?: ""))
+                Log.d(TAG, "Error : ${it.message}\n ${it.cause}")
+            }
+            .collectLatest {
+                _uiEvent.send(HomeContract.UiEvent.LoadedTemplate(it))
+            }
     }
 
     companion object {
