@@ -1,4 +1,4 @@
-package com.example.mvi_template.ui.main.contents
+package com.example.mvi_template.ui.home.component
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement

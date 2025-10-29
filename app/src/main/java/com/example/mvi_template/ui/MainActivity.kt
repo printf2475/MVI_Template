@@ -8,8 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.example.mvi_template.ui.main.HomeViewModel
-import com.example.mvi_template.ui.main.screen.HomeScreen
+import com.example.mvi_template.ui.home.HomeRoute
+import com.example.mvi_template.ui.home.HomeViewModel
 import com.example.mvi_template.ui.theme.MVI_TemplateTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    HomeScreen(viewModel = viewModel)
+                    HomeRoute(viewModel = viewModel)
                 }
             }
         }
