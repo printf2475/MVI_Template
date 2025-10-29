@@ -4,8 +4,9 @@ import com.example.mvi_template.data.mapper.TemplateMapper
 import com.example.mvi_template.domain.model.TemplateAlbum
 import com.example.mvi_template.domain.repository.Repository
 import com.example.mvi_template.data.repository.remote.RemoteDataSource
+import javax.inject.Inject
 
-class DefaultRepository(
+class DefaultRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : Repository {
     override suspend fun getTemplateAlbums(): List<TemplateAlbum> =
