@@ -1,4 +1,4 @@
-package com.example.mvi_template.data.repository.remote
+package com.example.mvi_template.data.remote
 
 import com.example.mvi_template.data.api.TemplateApi
 import com.example.mvi_template.data.model.TemplateAlbum
